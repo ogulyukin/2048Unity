@@ -30,11 +30,11 @@ namespace Assets.Scripts.Game.Handlers.TurnHandlers
                         if (moveResult.Item1 != j)
                         {
                             _fieldsStorage.MoveEntity(j, moveResult.Item1);
-                            EventBus.RaiseEvent(new MoveCubeVisualEvent(j, moveResult.Item1));
+                            EventBus.RaiseEvent(new MoveCubeVisualEvent(j, moveResult.Item1, step));
                         }
                         if (moveResult.Item2 >= 0)
                         {
-                            ProceedCollision(moveResult.Item1, moveResult.Item2);
+                            ProceedCollision(moveResult.Item1, moveResult.Item2, step);
                         }
                     }
                 }
@@ -58,11 +58,11 @@ namespace Assets.Scripts.Game.Handlers.TurnHandlers
             return (checkedPos, -1);
         }
 
-        private void ProceedCollision(int source, int target)
+        private void ProceedCollision(int source, int target, float timeout)
         {
             _fieldsStorage.ClearEntity(source);
-            EventBus.RaiseEvent(new DestroyEvent(source));
-            EventBus.RaiseEvent(new RiseValueEvent(target, _fieldsStorage.RiseEntityValue(target)));
+            EventBus.RaiseEvent(new DestroyEvent(source, timeout));
+            EventBus.RaiseEvent(new RiseValueEvent(target, _fieldsStorage.RiseEntityValue(target), timeout));
         }
     }
 }

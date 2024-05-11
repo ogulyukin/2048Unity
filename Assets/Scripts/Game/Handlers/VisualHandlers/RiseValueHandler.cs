@@ -23,7 +23,7 @@ namespace Assets.Scripts.Game.Handlers.VisualHandlers
 
         protected override void HandleEvent(RiseValueEvent evt)
         {
-            _visualPipeline.AddTask(new RiseCubeValueVisualTask(_fieldStorageView, evt.Position, evt.Value));
+            _visualPipeline.AddTask(new RiseCubeValueVisualTask(_fieldStorageView, evt.Position, evt.Value, evt.ActionTimeout));
         }
     }
 }

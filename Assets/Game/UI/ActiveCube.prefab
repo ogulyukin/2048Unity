@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cubeText: {fileID: 3285000103829900579}
-  _panel: {fileID: 4293042428681520281}
+  _panel: {fileID: 120878006996875985}
 --- !u!1 &4293042428681520281
 GameObject:
   m_ObjectHideFlags: 0

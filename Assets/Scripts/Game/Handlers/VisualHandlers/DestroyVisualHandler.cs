@@ -22,7 +22,7 @@ namespace Assets.Scripts.Game.Handlers.VisualHandlers
 
         protected override void HandleEvent(DestroyEvent evt)
         {
-            _visualPipeline.AddTask(new DestroyActiveCubeVisualTask(_fieldStorageView, evt.Position));
+            _visualPipeline.AddTask(new DestroyActiveCubeVisualTask(_fieldStorageView, evt.Position, evt.DestroyTimeout));
         }
     }
 }
