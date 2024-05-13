@@ -7,19 +7,19 @@ namespace Game.Pipeline.TurnPipeline.Tasks
     public sealed class RedrawCurrentScoreTask : PipelineTask
     {
         private readonly GameScore _gameScore;
-        private readonly FieldsStorage _fieldsStorage;
+        private readonly ActiveCubesStorage _activeCubesStorage;
         private readonly EventBus _eventBus;
 
-        public RedrawCurrentScoreTask(GameScore gameScore, FieldsStorage fieldsStorage, EventBus eventBus)
+        public RedrawCurrentScoreTask(GameScore gameScore, ActiveCubesStorage activeCubesStorage, EventBus eventBus)
         {
             _gameScore = gameScore;
-            _fieldsStorage = fieldsStorage;
+            _activeCubesStorage = activeCubesStorage;
             _eventBus = eventBus;
         }
 
         protected override void OnRun()
         {
-            var currentMaxValue = _fieldsStorage.GetMaxFieldValue();
+            var currentMaxValue = _activeCubesStorage.GetMaxFieldValue();
             if (currentMaxValue != _gameScore.CurrentScore)
             {
                 _gameScore.CurrentScore = currentMaxValue;

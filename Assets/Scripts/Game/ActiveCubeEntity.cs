@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game
 {
-    public sealed class FieldEntity
+    public sealed class ActiveCubeEntity
     {
         private int _value;
         private int _count;

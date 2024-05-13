@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Game.Pipeline.TurnPipeline.Tasks
 {
     [UsedImplicitly]
-    public class UserEndGameTask : PipelineTask
+    public sealed class UserEndGameTask : PipelineTask
     {
         private readonly GameState _gameState;
         private readonly EventBus _eventBus;

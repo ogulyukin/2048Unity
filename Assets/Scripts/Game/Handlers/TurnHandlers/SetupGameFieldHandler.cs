@@ -5,18 +5,18 @@ using UI;
 namespace Game.Handlers.TurnHandlers
 {
     [UsedImplicitly]
-    public class SetupGameFieldHandler : BaseHandler<SetupGameFieldEvent>
+    public sealed class SetupGameFieldHandler : BaseHandler<SetupGameFieldEvent>
     {
-        private readonly FieldStorageView _fieldStorageView;
+        private readonly GameObjectsStorageView _gameObjectsStorageView;
 
-        public SetupGameFieldHandler(EventBus eventBus, FieldStorageView fieldStorageView) : base(eventBus)
+        public SetupGameFieldHandler(EventBus eventBus, GameObjectsStorageView gameObjectsStorageView) : base(eventBus)
         {
-            _fieldStorageView = fieldStorageView;
+            _gameObjectsStorageView = gameObjectsStorageView;
         }
 
         protected override void HandleEvent(SetupGameFieldEvent evt)
         {
-            _fieldStorageView.Setup();
+            _gameObjectsStorageView.Setup();
         }
     }
 }

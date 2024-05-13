@@ -13,7 +13,7 @@ namespace Game
     }
     
     [UsedImplicitly]
-    public class ScoreHistory
+    public sealed class ScoreHistory
     {
         private readonly List<ScoreEntry> _score = new();
 

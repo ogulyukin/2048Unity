@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
     [UsedImplicitly]
-    public sealed class FieldStorageView : MonoBehaviour
+    public sealed class GameObjectsStorageView : MonoBehaviour
     {
-        [SerializeField] private GameObject _fieldPrefab;
-        [SerializeField] private Transform _parentObject;
-        [SerializeField] private GameObject _backgroundPrefab;
-        [SerializeField] private GameObject _activeCubePrefab;
-        [SerializeField] private List<Color> _cubeColors;
+        [FormerlySerializedAs("_fieldPrefab")] [SerializeField] private GameObject fieldPrefab;
+        [FormerlySerializedAs("_parentObject")] [SerializeField] private Transform parentObject;
+        [FormerlySerializedAs("_backgroundPrefab")] [SerializeField] private GameObject backgroundPrefab;
+        [FormerlySerializedAs("_activeCubePrefab")] [SerializeField] private GameObject activeCubePrefab;
+        [FormerlySerializedAs("_cubeColors")] [SerializeField] private List<Color> cubeColors;
 
         private const float ActionCoefficient = 0.15f;
 
@@ -26,14 +27,14 @@ namespace UI
             _fieldCoordinates = new Vector3[16];
             _activeCubes = new GameObject[16];
             var count = 0;
-            Instantiate(_backgroundPrefab, Vector3.zero, _backgroundPrefab.transform.rotation, _parentObject);
+            Instantiate(backgroundPrefab, Vector3.zero, backgroundPrefab.transform.rotation, parentObject);
             
             for (var i = 4.38f; i > -5f; i -= 2.92f)
             {
                 for (var j = -4.38f; j < 5f; j += 2.92f)
                 {
                     var position = new Vector3(j, i, -0.5f);
-                    Instantiate(_fieldPrefab, position, _fieldPrefab.transform.rotation , _parentObject);
+                    Instantiate(fieldPrefab, position, fieldPrefab.transform.rotation , parentObject);
                     position.z = -0.6f;
                     _fieldCoordinates[count] = position;
                     count++;
@@ -42,7 +43,7 @@ namespace UI
             count = 0;
             for (var i = 2; i < 2049; i *= 2)
             {
-                _colorsDictionary.Add(i, _cubeColors[count]);
+                _colorsDictionary.Add(i, cubeColors[count]);
                 count++;
             }
         }
@@ -58,7 +59,7 @@ namespace UI
 
         public void InstantiateNewActiveCube(int position, int value)
         {
-            var newActiveCube = Instantiate(_activeCubePrefab, _fieldCoordinates[position], _activeCubePrefab.transform.rotation, _parentObject);
+            var newActiveCube = Instantiate(activeCubePrefab, _fieldCoordinates[position], activeCubePrefab.transform.rotation, parentObject);
             _activeCubes[position] = newActiveCube;
             var view = newActiveCube.GetComponent<ActiveCubeView>();
             view.SetCubeText($"{value}");

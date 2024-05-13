@@ -5,27 +5,27 @@ using UI;
 namespace Game.Handlers.TurnHandlers
 {
     [UsedImplicitly]
-    public class CreateNewActiveCubeHandler : BaseHandler<CreateNewActiveCubeEvent>
+    public sealed class CreateNewActiveCubeHandler : BaseHandler<CreateNewActiveCubeEvent>
     {
-        private readonly FieldsStorage _fieldsStorage;
-        private readonly FieldStorageView _fieldStorageView;
+        private readonly ActiveCubesStorage _activeCubesStorage;
+        private readonly GameObjectsStorageView _gameObjectsStorageView;
 
-        public CreateNewActiveCubeHandler(EventBus eventBus, FieldsStorage fieldsStorage, FieldStorageView fieldStorageView) : base(eventBus)
+        public CreateNewActiveCubeHandler(EventBus eventBus, ActiveCubesStorage activeCubesStorage, GameObjectsStorageView gameObjectsStorageView) : base(eventBus)
         {
-            _fieldsStorage = fieldsStorage;
-            _fieldStorageView = fieldStorageView;
+            _activeCubesStorage = activeCubesStorage;
+            _gameObjectsStorageView = gameObjectsStorageView;
         }
 
         protected override void HandleEvent(CreateNewActiveCubeEvent evt)
         {
-            var fieldIndex = _fieldsStorage.AddNewRandomValue();
+            var fieldIndex = _activeCubesStorage.AddNewRandomValue();
             if (fieldIndex < 0)
             {
                 EventBus.RaiseEvent(new GameOverEvent());
             }
             else
             {
-                EventBus.RaiseEvent(new CreateNewActiveCubeVisualEvent(fieldIndex, _fieldsStorage.GetFieldEntityValue(fieldIndex), _fieldStorageView));
+                EventBus.RaiseEvent(new CreateNewActiveCubeVisualEvent(fieldIndex, _activeCubesStorage.GetFieldEntityValue(fieldIndex), _gameObjectsStorageView));
             }
         }
     }

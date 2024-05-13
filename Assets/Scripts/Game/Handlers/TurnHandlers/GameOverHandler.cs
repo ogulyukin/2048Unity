@@ -7,7 +7,7 @@ using UI;
 namespace Game.Handlers.TurnHandlers
 {
     [UsedImplicitly]
-    public class GameOverHandler : BaseHandler<GameOverEvent>
+    public sealed class GameOverHandler : BaseHandler<GameOverEvent>
     {
         private readonly VisualPipeline _visualPipeline;
         private readonly EndGamePanelView _endGamePanelView;

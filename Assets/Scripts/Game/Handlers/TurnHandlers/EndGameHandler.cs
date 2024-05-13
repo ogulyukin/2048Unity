@@ -5,24 +5,24 @@ using UI;
 namespace Game.Handlers.TurnHandlers
 {
     [UsedImplicitly]
-    public class EndGameHandler : BaseHandler<EndGameEvent>
+    public sealed class EndGameHandler : BaseHandler<EndGameEvent>
     {
-        private readonly FieldStorageView _fieldStorageView;
-        private readonly FieldsStorage _fieldsStorage;
+        private readonly GameObjectsStorageView _gameObjectsStorageView;
+        private readonly ActiveCubesStorage _activeCubesStorage;
         private readonly MainMenuController _mainMenuController;
 
-        public EndGameHandler(EventBus eventBus, FieldStorageView fieldStorageView, FieldsStorage fieldsStorage, MainMenuController mainMenuController,
+        public EndGameHandler(EventBus eventBus, GameObjectsStorageView gameObjectsStorageView, ActiveCubesStorage activeCubesStorage, MainMenuController mainMenuController,
             ScoreHistory scoreHistory) : base(eventBus)
         {
-            _fieldStorageView = fieldStorageView;
-            _fieldsStorage = fieldsStorage;
+            _gameObjectsStorageView = gameObjectsStorageView;
+            _activeCubesStorage = activeCubesStorage;
             _mainMenuController = mainMenuController;
         }
 
         protected override void HandleEvent(EndGameEvent evt)
         {
-            _fieldStorageView.Clear();
-            _fieldsStorage.Clear();
+            _gameObjectsStorageView.Clear();
+            _activeCubesStorage.Clear();
             _mainMenuController.EndGame();
         }
     }

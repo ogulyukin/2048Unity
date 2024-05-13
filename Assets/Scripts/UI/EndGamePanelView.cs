@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class EndGamePanelView : MonoBehaviour
+    public sealed class EndGamePanelView : MonoBehaviour
     {
         [SerializeField] private Button closeButton;
         [SerializeField] private TextMeshProUGUI scoreText;

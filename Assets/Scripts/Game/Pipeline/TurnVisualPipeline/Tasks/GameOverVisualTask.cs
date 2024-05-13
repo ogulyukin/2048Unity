@@ -3,7 +3,7 @@ using UI;
 
 namespace Game.Pipeline.TurnVisualPipeline.Tasks
 {
-    public class GameOverVisualTask : PipelineTask
+    public sealed class GameOverVisualTask : PipelineTask
     {
         private readonly EndGamePanelView _endGamePanelView;
         private readonly GameScore _gameScore;

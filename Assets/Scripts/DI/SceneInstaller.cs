@@ -13,6 +13,7 @@ using SaveSystem.FileSaverSystem;
 using SaveSystem.Tools;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace DI
@@ -21,7 +22,7 @@ namespace DI
     public sealed class SceneInstaller : MonoInstaller
     {
         [SerializeField] private MainMenuView mainMenuView;
-        [SerializeField] private FieldStorageView fieldStorageView;
+        [FormerlySerializedAs("fieldStorageView")] [SerializeField] private GameObjectsStorageView gameObjectsStorageView;
         [SerializeField] private CurrentScoreView currentScoreView;
         [SerializeField] private EndGamePanelView endGamePanelView;
         [SerializeField] private ScoreHistoryView scoreHistoryView;
@@ -30,12 +31,12 @@ namespace DI
         {
             Container.Bind<EventBus>().AsSingle();
             Container.Bind<MainMenuView>().FromInstance(mainMenuView);
-            Container.Bind<FieldStorageView>().FromInstance(fieldStorageView);
+            Container.Bind<GameObjectsStorageView>().FromInstance(gameObjectsStorageView);
             Container.Bind<CurrentScoreView>().FromInstance(currentScoreView);
             Container.Bind<EndGamePanelView>().FromInstance(endGamePanelView);
             Container.Bind<ScoreHistoryView>().FromInstance(scoreHistoryView);
             Container.Bind<SavingSystemHelper>().FromInstance(savingSystemHelper);
-            Container.Bind<FieldsStorage>().AsSingle();
+            Container.Bind<ActiveCubesStorage>().AsSingle();
             Container.BindInterfacesAndSelfTo<MainMenuController>().AsSingle();
             Container.BindInterfacesAndSelfTo<ScoreHistoryUiController>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameRunner>().AsSingle();

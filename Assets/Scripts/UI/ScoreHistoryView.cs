@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class ScoreHistoryView : MonoBehaviour
+    public sealed class ScoreHistoryView : MonoBehaviour
     {
         [SerializeField] private GameObject scoreEntryPrefab;
         [SerializeField] private Transform parentTransform;

@@ -4,20 +4,20 @@ using JetBrains.Annotations;
 namespace Game.Pipeline.TurnPipeline.Tasks
 {
     [UsedImplicitly]
-    public class GameOverTask : PipelineTask
+    public sealed class GameOverTask : PipelineTask
     {
-        private readonly FieldsStorage _fieldsStorage;
+        private readonly ActiveCubesStorage _activeCubesStorage;
         private readonly EventBus _eventBus;
 
-        public GameOverTask(FieldsStorage fieldsStorage, EventBus eventBus)
+        public GameOverTask(ActiveCubesStorage activeCubesStorage, EventBus eventBus)
         {
-            _fieldsStorage = fieldsStorage;
+            _activeCubesStorage = activeCubesStorage;
             _eventBus = eventBus;
         }
 
         protected override void OnRun()
         {
-            if (_fieldsStorage.GetMaxFieldValue() == 2048)
+            if (_activeCubesStorage.GetMaxFieldValue() == 2048)
             {
                 _eventBus.RaiseEvent(new GameOverEvent());
             }

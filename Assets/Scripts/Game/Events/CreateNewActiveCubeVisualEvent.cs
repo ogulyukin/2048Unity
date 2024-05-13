@@ -6,12 +6,12 @@ namespace Game.Events
     {
         public readonly int Index;
         public readonly int Value;
-        public readonly FieldStorageView FieldStorageView;
+        public readonly GameObjectsStorageView _gameObjectsStorageView;
 
-        public CreateNewActiveCubeVisualEvent(int index, int value, FieldStorageView fieldStorageView)
+        public CreateNewActiveCubeVisualEvent(int index, int value, GameObjectsStorageView gameObjectsStorageView)
         {
             Index = index;
-            FieldStorageView = fieldStorageView;
+            _gameObjectsStorageView = gameObjectsStorageView;
             Value = value;
         }
     }

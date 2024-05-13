@@ -6,11 +6,11 @@ namespace Game.Handlers.TurnHandlers
     [UsedImplicitly]
     public sealed class MoveUpHandler : BaseHandler<MoveUpEvent>
     {
-        private readonly FieldsStorage _fieldsStorage;
+        private readonly ActiveCubesStorage _activeCubesStorage;
         
-        public MoveUpHandler(EventBus eventBus, FieldsStorage fieldsStorage) : base(eventBus)
+        public MoveUpHandler(EventBus eventBus, ActiveCubesStorage activeCubesStorage) : base(eventBus)
         {
-            _fieldsStorage = fieldsStorage;
+            _activeCubesStorage = activeCubesStorage;
         }
 
         protected override void HandleEvent(MoveUpEvent evt)
@@ -21,13 +21,13 @@ namespace Game.Handlers.TurnHandlers
                 var maxJ = i + 4;
                 for (var j = i; j < maxJ; j += 1)
                 {
-                    var currentCubeValue = _fieldsStorage.GetFieldEntityValue(j);
+                    var currentCubeValue = _activeCubesStorage.GetFieldEntityValue(j);
                     if (currentCubeValue > 0)
                     {
                         var moveResult = MoveActiveCubeUp(j, step);
                         if (moveResult.Item1 != j)
                         {
-                            _fieldsStorage.MoveEntity(j, moveResult.Item1);
+                            _activeCubesStorage.MoveEntity(j, moveResult.Item1);
                             EventBus.RaiseEvent(new MoveCubeVisualEvent(j, moveResult.Item1, step));
                         }
                         if (moveResult.Item2 >= 0)
@@ -46,10 +46,10 @@ namespace Game.Handlers.TurnHandlers
             for (var i = steps; i > 0; i--)
             {
                 checkedPos -= 4;
-                var upValue = _fieldsStorage.GetFieldEntityValue(checkedPos);
+                var upValue = _activeCubesStorage.GetFieldEntityValue(checkedPos);
                 if (upValue != 0)
                 {
-                    return (checkedPos + 4, _fieldsStorage.GetFieldEntityValue(position) == upValue ? checkedPos : -1);
+                    return (checkedPos + 4, _activeCubesStorage.GetFieldEntityValue(position) == upValue ? checkedPos : -1);
                 }
             }
 
@@ -58,9 +58,9 @@ namespace Game.Handlers.TurnHandlers
 
         private void ProceedCollision(int source, int target, float timeout)
         {
-            _fieldsStorage.ClearEntity(source);
+            _activeCubesStorage.ClearEntity(source);
             EventBus.RaiseEvent(new DestroyEvent(source, timeout));
-            EventBus.RaiseEvent(new RiseValueEvent(target, _fieldsStorage.RiseEntityValue(target), timeout));
+            EventBus.RaiseEvent(new RiseValueEvent(target, _activeCubesStorage.RiseEntityValue(target), timeout));
         }
     }
 }

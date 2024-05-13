@@ -1,21 +1,22 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
     public sealed class ButtonView : MonoBehaviour
     {
-        [SerializeField] private Button _button;
+        [FormerlySerializedAs("_button")] [SerializeField] private Button button;
 
         public void AddListener(UnityAction callback)
         {
-            _button.onClick.AddListener(callback);
+            button.onClick.AddListener(callback);
         }
         
         public void RemoveListener(UnityAction callback)
         {
-            _button.onClick.RemoveListener(callback);
+            button.onClick.RemoveListener(callback);
         }
     }
 }

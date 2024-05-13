@@ -10,18 +10,18 @@ namespace Game.Handlers.VisualHandlers
     [UsedImplicitly]
     public sealed class RiseValueHandler : BaseHandler<RiseValueEvent>
     {
-        private readonly FieldStorageView _fieldStorageView;
+        private readonly GameObjectsStorageView _gameObjectsStorageView;
         private readonly VisualPipeline _visualPipeline;
         
-        public RiseValueHandler(EventBus eventBus, FieldStorageView fieldStorageView, VisualPipeline visualPipeline) : base(eventBus)
+        public RiseValueHandler(EventBus eventBus, GameObjectsStorageView gameObjectsStorageView, VisualPipeline visualPipeline) : base(eventBus)
         {
-            _fieldStorageView = fieldStorageView;
+            _gameObjectsStorageView = gameObjectsStorageView;
             _visualPipeline = visualPipeline;
         }
 
         protected override void HandleEvent(RiseValueEvent evt)
         {
-            _visualPipeline.AddTask(new RiseCubeValueVisualTask(_fieldStorageView, evt.Position, evt.Value, evt.ActionTimeout));
+            _visualPipeline.AddTask(new RiseCubeValueVisualTask(_gameObjectsStorageView, evt.Position, evt.Value, evt.ActionTimeout));
         }
     }
 }

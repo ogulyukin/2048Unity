@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Game.Handlers.VisualHandlers
 {
     [UsedImplicitly]
-    public class CreateNewActiveCubeVisualHandler : BaseHandler<CreateNewActiveCubeVisualEvent>
+    public sealed class CreateNewActiveCubeVisualHandler : BaseHandler<CreateNewActiveCubeVisualEvent>
     {
         private readonly VisualPipeline _visualPipeline;
         
@@ -20,7 +20,7 @@ namespace Game.Handlers.VisualHandlers
         protected override void HandleEvent(CreateNewActiveCubeVisualEvent evt)
         {
             Debug.Log($"Visual handler: {evt.Index}, {evt.Value}");
-            _visualPipeline.AddTask(new CreateNewActiveCubeVisualTask(evt.FieldStorageView, evt.Index, evt.Value));
+            _visualPipeline.AddTask(new CreateNewActiveCubeVisualTask(evt._gameObjectsStorageView, evt.Index, evt.Value));
         }
     }
 }

@@ -5,7 +5,7 @@ using UI;
 namespace Game
 {
     [UsedImplicitly]
-    public class ScoreHistoryUiController : IDisposable
+    public sealed class ScoreHistoryUiController : IDisposable
     {
         private readonly MainMenuView _mainMenuView;
         private readonly ScoreHistoryView _scoreHistoryView;

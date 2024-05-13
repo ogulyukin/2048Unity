@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class ScoreEntryView : MonoBehaviour
+    public sealed class ScoreEntryView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI dateTimeText;
         [SerializeField] private TextMeshProUGUI scoreText;

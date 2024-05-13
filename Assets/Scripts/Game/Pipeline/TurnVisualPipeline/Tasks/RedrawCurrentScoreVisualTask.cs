@@ -2,7 +2,7 @@ using UI;
 
 namespace Game.Pipeline.TurnVisualPipeline.Tasks
 {
-    public class RedrawCurrentScoreVisualTask : PipelineTask
+    public sealed class RedrawCurrentScoreVisualTask : PipelineTask
     {
         private readonly CurrentScoreView _currentScoreView;
         private readonly int _currentScore;

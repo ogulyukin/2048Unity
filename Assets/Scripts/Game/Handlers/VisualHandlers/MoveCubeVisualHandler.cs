@@ -10,18 +10,18 @@ namespace Game.Handlers.VisualHandlers
     [UsedImplicitly]
     public sealed class MoveCubeVisualHandler : BaseHandler<MoveCubeVisualEvent>
     {
-        private readonly FieldStorageView _fieldStorageView;
+        private readonly GameObjectsStorageView _gameObjectsStorageView;
         private readonly VisualPipeline _visualPipeline;
         
-        public MoveCubeVisualHandler(EventBus eventBus, FieldStorageView fieldStorageView, VisualPipeline visualPipeline) : base(eventBus)
+        public MoveCubeVisualHandler(EventBus eventBus, GameObjectsStorageView gameObjectsStorageView, VisualPipeline visualPipeline) : base(eventBus)
         {
-            _fieldStorageView = fieldStorageView;
+            _gameObjectsStorageView = gameObjectsStorageView;
             _visualPipeline = visualPipeline;
         }
 
         protected override void HandleEvent(MoveCubeVisualEvent evt)
         {
-            _visualPipeline.AddTask(new MoveActiveCubeVisualTask(_fieldStorageView, evt.CurrentEntity, evt.TargetEntity, evt.Duration));
+            _visualPipeline.AddTask(new MoveActiveCubeVisualTask(_gameObjectsStorageView, evt.CurrentEntity, evt.TargetEntity, evt.Duration));
         }
     }
 }

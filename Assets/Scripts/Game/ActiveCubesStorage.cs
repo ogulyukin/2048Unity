@@ -7,16 +7,16 @@ using Random = UnityEngine.Random;
 namespace Game
 {
     [UsedImplicitly]
-    public sealed class FieldsStorage
+    public sealed class ActiveCubesStorage
     {
         private const int FieldStorageSize = 16;
-        private readonly FieldEntity[] _fieldsStorage = new FieldEntity[FieldStorageSize];
+        private readonly ActiveCubeEntity[] _fieldsStorage = new ActiveCubeEntity[FieldStorageSize];
 
-        public FieldsStorage()
+        public ActiveCubesStorage()
         {
             for (int i = 0; i < FieldStorageSize; i++)
             {
-                _fieldsStorage[i] = new FieldEntity();
+                _fieldsStorage[i] = new ActiveCubeEntity();
                 _fieldsStorage[i].SetupPosition(i);
             }
         }
@@ -31,7 +31,7 @@ namespace Game
 
         public int AddNewRandomValue()
         {
-            var emptyFields = new List<FieldEntity>();
+            var emptyFields = new List<ActiveCubeEntity>();
             foreach (var entity in _fieldsStorage)
             {
                 if (entity.Value == 0)

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Game.Pipeline.TurnPipeline.Tasks
 {
     [UsedImplicitly]
-    public class StartVisualPipelineTask : PipelineTask
+    public sealed class StartVisualPipelineTask : PipelineTask
     {
         private readonly VisualPipeline _visualPipeline;
 

@@ -2,14 +2,15 @@ using DG.Tweening;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
     [UsedImplicitly]
     public sealed class ActiveCubeView : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _cubeText;
-        [SerializeField] private UnityEngine.UI.Image _panel;
+        [FormerlySerializedAs("_cubeText")] [SerializeField] private TextMeshProUGUI cubeText;
+        [FormerlySerializedAs("_panel")] [SerializeField] private UnityEngine.UI.Image panel;
         private Vector3 _originalScale;
 
         private void OnEnable()
@@ -18,12 +19,12 @@ namespace UI
         }
         public void SetCubeText(string newText)
         {
-            _cubeText.text = newText;
+            cubeText.text = newText;
         }
 
         public void SetPanelColor(Color color)
         {
-            _panel.color = color;
+            panel.color = color;
         }
 
         public void Move(Vector3 position, float duration)

@@ -10,18 +10,18 @@ namespace Game.Handlers.VisualHandlers
     [UsedImplicitly]
     public sealed class DestroyVisualHandler : BaseHandler<DestroyEvent>
     {
-        private readonly FieldStorageView _fieldStorageView;
+        private readonly GameObjectsStorageView _gameObjectsStorageView;
         private readonly VisualPipeline _visualPipeline;
         
-        public DestroyVisualHandler(EventBus eventBus, FieldStorageView fieldStorageView, VisualPipeline visualPipeline) : base(eventBus)
+        public DestroyVisualHandler(EventBus eventBus, GameObjectsStorageView gameObjectsStorageView, VisualPipeline visualPipeline) : base(eventBus)
         {
-            _fieldStorageView = fieldStorageView;
+            _gameObjectsStorageView = gameObjectsStorageView;
             _visualPipeline = visualPipeline;
         }
 
         protected override void HandleEvent(DestroyEvent evt)
         {
-            _visualPipeline.AddTask(new DestroyActiveCubeVisualTask(_fieldStorageView, evt.Position, evt.DestroyTimeout));
+            _visualPipeline.AddTask(new DestroyActiveCubeVisualTask(_gameObjectsStorageView, evt.Position, evt.DestroyTimeout));
         }
     }
 }
