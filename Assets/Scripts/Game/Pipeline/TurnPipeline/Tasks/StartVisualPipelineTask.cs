@@ -1,9 +1,8 @@
-using Assets.Scripts.Game.Pipeline.TurnVisualPipeline;
-using Game.Pipeline;
+using Game.Pipeline.TurnVisualPipeline;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Assets.Scripts.Game.Pipeline.TurnPipeline.Tasks
+namespace Game.Pipeline.TurnPipeline.Tasks
 {
     [UsedImplicitly]
     public class StartVisualPipelineTask : PipelineTask

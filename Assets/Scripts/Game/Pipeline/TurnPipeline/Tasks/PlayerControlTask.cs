@@ -1,11 +1,9 @@
-using Assets.Scripts.Game.Control;
-using Assets.Scripts.Game.Events;
-using Game;
-using Game.Pipeline;
+using Game.Control;
+using Game.Events;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Assets.Scripts.Game.Pipeline.TurnPipeline.Tasks
+namespace Game.Pipeline.TurnPipeline.Tasks
 {
     [UsedImplicitly]
     public sealed class PlayerControlTask : PipelineTask

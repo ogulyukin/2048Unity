@@ -1,12 +1,11 @@
-using Assets.Scripts.Game.Events;
-using Assets.Scripts.Game.Pipeline.TurnVisualPipeline;
-using Assets.Scripts.Game.Pipeline.TurnVisualPipeline.Tasks;
-using Assets.Scripts.UI;
-using Game;
-using Game.Handlers.Turn;
+using Game.Events;
+using Game.Handlers.TurnHandlers;
+using Game.Pipeline.TurnVisualPipeline;
+using Game.Pipeline.TurnVisualPipeline.Tasks;
 using JetBrains.Annotations;
+using UI;
 
-namespace Assets.Scripts.Game.Handlers.VisualHandlers
+namespace Game.Handlers.VisualHandlers
 {
     [UsedImplicitly]
     public sealed class MoveCubeVisualHandler : BaseHandler<MoveCubeVisualEvent>

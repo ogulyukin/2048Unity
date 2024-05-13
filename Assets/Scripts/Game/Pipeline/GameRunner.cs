@@ -1,8 +1,7 @@
 using System;
-using Assets.Scripts.UI;
 using JetBrains.Annotations;
 
-namespace Assets.Scripts.Game.Pipeline
+namespace Game.Pipeline
 {
     [UsedImplicitly]
     public sealed class GameRunner: IDisposable

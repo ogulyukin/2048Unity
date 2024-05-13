@@ -1,9 +1,7 @@
-using Assets.Scripts.Game.Events;
-using Game;
-using Game.Handlers.Turn;
+using Game.Events;
 using JetBrains.Annotations;
 
-namespace Assets.Scripts.Game.Handlers.TurnHandlers
+namespace Game.Handlers.TurnHandlers
 {
     [UsedImplicitly]
     public sealed class MoveUpHandler : BaseHandler<MoveUpEvent>

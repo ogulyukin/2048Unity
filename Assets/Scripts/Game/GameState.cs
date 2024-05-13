@@ -1,15 +1,15 @@
 using System;
 using JetBrains.Annotations;
 
-namespace Assets.Scripts.Game
+namespace Game
 {
     public enum States
     {
-        Started, Stopped, JustStarted
+        Started, Stopped, JustStarted, GameOver
     }
     
     [UsedImplicitly]
-    public class GameState
+    public sealed class GameState
     {
         private States _currentState;
         public Action OnValueChanged;

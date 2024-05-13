@@ -1,10 +1,8 @@
-using Assets.Scripts.Game.Events;
-using Game;
-using Game.Pipeline;
+using Game.Events;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Assets.Scripts.Game.Pipeline.TurnPipeline.Tasks
+namespace Game.Pipeline.TurnPipeline.Tasks
 {
     [UsedImplicitly]
     public class EndTurnTask : PipelineTask

@@ -1,7 +1,6 @@
-using Assets.Scripts.UI;
-using Game.Events;
+using UI;
 
-namespace Assets.Scripts.Game.Events
+namespace Game.Events
 {
     public struct CreateNewActiveCubeVisualEvent : IEvent
     {

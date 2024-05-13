@@ -1,9 +1,9 @@
 using System;
-using Assets.Scripts.Game.Pipeline.TurnPipeline.Tasks;
+using Game.Pipeline.TurnPipeline.Tasks;
 using JetBrains.Annotations;
 using Zenject;
 
-namespace Assets.Scripts.Game.Pipeline
+namespace Game.Pipeline
 {
     [UsedImplicitly]
     public sealed class TurnPipelineInstaller: IInitializable, IDisposable
@@ -23,8 +23,10 @@ namespace Assets.Scripts.Game.Pipeline
             _pipeline.AddTask(_container.Resolve<StartGameTask>());
             _pipeline.AddTask(_container.Resolve<PlayerControlTask>());
             _pipeline.AddTask(_container.Resolve<EndTurnTask>());
+            _pipeline.AddTask(_container.Resolve<RedrawCurrentScoreTask>());
+            _pipeline.AddTask(_container.Resolve<GameOverTask>());
             _pipeline.AddTask(_container.Resolve<StartVisualPipelineTask>());
-            _pipeline.AddTask(_container.Resolve<EndGameTask>());
+            _pipeline.AddTask(_container.Resolve<UserEndGameTask>());
         }
 
         public void Dispose()

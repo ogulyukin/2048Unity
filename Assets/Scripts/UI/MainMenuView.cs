@@ -1,12 +1,10 @@
 using JetBrains.Annotations;
-using UI;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     [UsedImplicitly]
-    public class MainMenuView : MonoBehaviour
+    public sealed class MainMenuView : MonoBehaviour
     {
         [SerializeField] private GameObject _mainMenu;
         [SerializeField] private ButtonView _startGameButton;

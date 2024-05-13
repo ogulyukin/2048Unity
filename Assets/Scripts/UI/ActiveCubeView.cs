@@ -3,10 +3,10 @@ using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     [UsedImplicitly]
-    public class ActiveCubeView : MonoBehaviour
+    public sealed class ActiveCubeView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _cubeText;
         [SerializeField] private UnityEngine.UI.Image _panel;

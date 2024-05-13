@@ -1,7 +1,7 @@
 using System;
 using Zenject;
 
-namespace Game.Handlers.Turn
+namespace Game.Handlers.TurnHandlers
 {
     public abstract class BaseHandler<T> : IInitializable, IDisposable
     {

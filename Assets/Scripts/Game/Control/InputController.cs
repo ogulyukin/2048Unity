@@ -1,10 +1,9 @@
-
 using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Game.Control
+namespace Game.Control
 {
     public enum UserCommands
     {

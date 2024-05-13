@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class ButtonView : MonoBehaviour
+    public sealed class ButtonView : MonoBehaviour
     {
         [SerializeField] private Button _button;
 

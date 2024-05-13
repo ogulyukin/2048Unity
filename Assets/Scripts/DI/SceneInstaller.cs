@@ -1,38 +1,40 @@
-using Assets.Scripts.Game;
-using Assets.Scripts.Game.Control;
-using Assets.Scripts.Game.Handlers.TurnHandlers;
-using Assets.Scripts.Game.Handlers.VisualHandlers;
-using Assets.Scripts.Game.Pipeline;
-using Assets.Scripts.Game.Pipeline.TurnPipeline;
-using Assets.Scripts.Game.Pipeline.TurnPipeline.Tasks;
-using Assets.Scripts.Game.Pipeline.TurnVisualPipeline;
-using Assets.Scripts.Game.Pipeline.TurnVisualPipeline.Tasks;
-using Assets.Scripts.UI;
 using Game;
+using Game.Control;
+using Game.Handlers.TurnHandlers;
+using Game.Handlers.VisualHandlers;
+using Game.Pipeline;
+using Game.Pipeline.TurnPipeline;
+using Game.Pipeline.TurnPipeline.Tasks;
+using Game.Pipeline.TurnVisualPipeline;
 using JetBrains.Annotations;
+using UI;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.DI
+namespace DI
 {
     [UsedImplicitly]
     public sealed class SceneInstaller : MonoInstaller
     {
-        [SerializeField] private MainMenuView _mainMenuView;
-        [SerializeField] private FieldStorageView _fieldStorageView;
+        [SerializeField] private MainMenuView mainMenuView;
+        [SerializeField] private FieldStorageView fieldStorageView;
+        [SerializeField] private CurrentScoreView currentScoreView;
+        [SerializeField] private EndGamePanelView endGamePanelView;
         public override void InstallBindings()
         {
             Container.Bind<EventBus>().AsSingle();
-            Container.Bind<MainMenuView>().FromInstance(_mainMenuView);
-            Container.Bind<FieldStorageView>().FromInstance(_fieldStorageView);
+            Container.Bind<MainMenuView>().FromInstance(mainMenuView);
+            Container.Bind<FieldStorageView>().FromInstance(fieldStorageView);
+            Container.Bind<CurrentScoreView>().FromInstance(currentScoreView);
+            Container.Bind<EndGamePanelView>().FromInstance(endGamePanelView);
             Container.Bind<FieldsStorage>().AsSingle();
             Container.BindInterfacesAndSelfTo<MainMenuController>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameRunner>().AsSingle();
-            Container.Bind<GameState>().AsSingle().NonLazy();
+            Container.Bind<GameState>().AsSingle();
+            Container.Bind<GameScore>().AsSingle();
             Container.BindInterfacesAndSelfTo<InputController>().AsSingle();
             HandlersBinding();
             PipelineTasksBinding();
-            VisualPipelineBinding();
         }
 
         private void HandlersBinding()
@@ -48,23 +50,22 @@ namespace Assets.Scripts.DI
             Container.BindInterfacesAndSelfTo<DestroyVisualHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<RiseValueHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<MoveCubeVisualHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RedrawCurrentScoreHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameOverHandler>().AsSingle();
         }
 
         private void PipelineTasksBinding()
         {
             Container.Bind<TurnPipeline>().AsSingle();
+            Container.Bind<VisualPipeline>().AsSingle();
             Container.BindInterfacesAndSelfTo<TurnPipelineInstaller>().AsSingle();
             Container.Bind<StartGameTask>().AsSingle();
-            Container.Bind<EndGameTask>().AsSingle();
+            Container.Bind<UserEndGameTask>().AsSingle();
             Container.Bind<EndTurnTask>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerControlTask>().AsSingle();
             Container.Bind<StartVisualPipelineTask>().AsSingle();
-        }
-
-        private void VisualPipelineBinding()
-        {
-            Container.Bind<VisualPipeline>().AsSingle();
-            Container.Bind<CreateNewActiveCubeVisualTask>().AsSingle();
+            Container.Bind<RedrawCurrentScoreTask>().AsSingle();
+            Container.Bind<GameOverTask>().AsSingle();
         }
     }
 }

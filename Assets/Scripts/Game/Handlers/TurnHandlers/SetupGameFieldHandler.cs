@@ -1,10 +1,8 @@
-using Assets.Scripts.Game.Events;
-using Assets.Scripts.UI;
-using Game;
-using Game.Handlers.Turn;
+using Game.Events;
 using JetBrains.Annotations;
+using UI;
 
-namespace Assets.Scripts.Game.Handlers.TurnHandlers
+namespace Game.Handlers.TurnHandlers
 {
     [UsedImplicitly]
     public class SetupGameFieldHandler : BaseHandler<SetupGameFieldEvent>

@@ -1,9 +1,9 @@
 using System;
-using Assets.Scripts.Game;
 using JetBrains.Annotations;
+using UI;
 using UnityEditor;
 
-namespace Assets.Scripts.UI
+namespace Game
 {
     [UsedImplicitly]
     public sealed class MainMenuController : IDisposable
@@ -12,11 +12,13 @@ namespace Assets.Scripts.UI
         public Action OnGameStart;
         public Action OnGameFinished;
         private readonly GameState _gameState;
+        private readonly CurrentScoreView _currentScoreView;
 
-        public MainMenuController(MainMenuView mainMenuView, GameState gameState)
+        public MainMenuController(MainMenuView mainMenuView, GameState gameState, CurrentScoreView currentScoreView)
         {
             _mainMenuView = mainMenuView;
             _gameState = gameState;
+            _currentScoreView = currentScoreView;
             _mainMenuView.StartGameButton.AddListener(BeginGame);
             _mainMenuView.ExitGameButton.AddListener(ExitGame);
             _mainMenuView.ExitGameButton2.AddListener(EndGame);
@@ -25,6 +27,7 @@ namespace Assets.Scripts.UI
         private void BeginGame()
         {
             _mainMenuView.SetMainMenuActiveness(false);
+            _currentScoreView.SetActive(true);
             OnGameStart?.Invoke();
         }
         
@@ -42,6 +45,7 @@ namespace Assets.Scripts.UI
             OnGameFinished?.Invoke();
             _gameState.CurrentState = States.Stopped;
             _mainMenuView.SetMainMenuActiveness(true);
+            _currentScoreView.SetActive(false);
         }
 
         public void Dispose()

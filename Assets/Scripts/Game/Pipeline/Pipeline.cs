@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Game.Pipeline;
 
-namespace Assets.Scripts.Game.Pipeline
+namespace Game.Pipeline
 {
     public class Pipeline
     {

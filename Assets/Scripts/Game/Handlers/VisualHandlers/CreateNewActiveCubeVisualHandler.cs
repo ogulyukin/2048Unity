@@ -1,12 +1,11 @@
-using Assets.Scripts.Game.Events;
-using Assets.Scripts.Game.Pipeline.TurnVisualPipeline;
-using Assets.Scripts.Game.Pipeline.TurnVisualPipeline.Tasks;
-using Game;
-using Game.Handlers.Turn;
+using Game.Events;
+using Game.Handlers.TurnHandlers;
+using Game.Pipeline.TurnVisualPipeline;
+using Game.Pipeline.TurnVisualPipeline.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Assets.Scripts.Game.Handlers.VisualHandlers
+namespace Game.Handlers.VisualHandlers
 {
     [UsedImplicitly]
     public class CreateNewActiveCubeVisualHandler : BaseHandler<CreateNewActiveCubeVisualEvent>

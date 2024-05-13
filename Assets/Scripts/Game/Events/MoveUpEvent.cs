@@ -1,7 +1,4 @@
-using Game.Events;
-
-
-namespace Assets.Scripts.Game.Events
+namespace Game.Events
 {
     public struct MoveUpEvent : IEvent
     {

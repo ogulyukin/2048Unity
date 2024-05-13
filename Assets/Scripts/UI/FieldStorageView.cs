@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     [UsedImplicitly]
     public sealed class FieldStorageView : MonoBehaviour
@@ -39,7 +39,6 @@ namespace Assets.Scripts.UI
                     count++;
                 }
             }
-
             count = 0;
             for (var i = 2; i < 2049; i *= 2)
             {
@@ -50,6 +49,7 @@ namespace Assets.Scripts.UI
 
         public void Clear()
         {
+            _colorsDictionary.Clear();
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);

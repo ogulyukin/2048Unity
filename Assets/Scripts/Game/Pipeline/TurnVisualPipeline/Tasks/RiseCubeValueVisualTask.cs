@@ -1,7 +1,6 @@
-using Assets.Scripts.UI;
-using Game.Pipeline;
+using UI;
 
-namespace Assets.Scripts.Game.Pipeline.TurnVisualPipeline.Tasks
+namespace Game.Pipeline.TurnVisualPipeline.Tasks
 {
     public sealed class RiseCubeValueVisualTask : PipelineTask
     {

@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.Game
+namespace Game
 {
     [UsedImplicitly]
     public sealed class FieldsStorage
