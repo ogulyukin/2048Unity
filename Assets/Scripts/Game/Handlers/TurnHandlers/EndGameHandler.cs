@@ -10,8 +10,9 @@ namespace Game.Handlers.TurnHandlers
         private readonly FieldStorageView _fieldStorageView;
         private readonly FieldsStorage _fieldsStorage;
         private readonly MainMenuController _mainMenuController;
-        
-        public EndGameHandler(EventBus eventBus, FieldStorageView fieldStorageView, FieldsStorage fieldsStorage, MainMenuController mainMenuController) : base(eventBus)
+
+        public EndGameHandler(EventBus eventBus, FieldStorageView fieldStorageView, FieldsStorage fieldsStorage, MainMenuController mainMenuController,
+            ScoreHistory scoreHistory) : base(eventBus)
         {
             _fieldStorageView = fieldStorageView;
             _fieldsStorage = fieldsStorage;

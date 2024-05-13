@@ -7,6 +7,10 @@ using Game.Pipeline.TurnPipeline;
 using Game.Pipeline.TurnPipeline.Tasks;
 using Game.Pipeline.TurnVisualPipeline;
 using JetBrains.Annotations;
+using SaveSystem.Core;
+using SaveSystem.Data;
+using SaveSystem.FileSaverSystem;
+using SaveSystem.Tools;
 using UI;
 using UnityEngine;
 using Zenject;
@@ -20,6 +24,8 @@ namespace DI
         [SerializeField] private FieldStorageView fieldStorageView;
         [SerializeField] private CurrentScoreView currentScoreView;
         [SerializeField] private EndGamePanelView endGamePanelView;
+        [SerializeField] private ScoreHistoryView scoreHistoryView;
+        [SerializeField] private SavingSystemHelper savingSystemHelper;
         public override void InstallBindings()
         {
             Container.Bind<EventBus>().AsSingle();
@@ -27,14 +33,19 @@ namespace DI
             Container.Bind<FieldStorageView>().FromInstance(fieldStorageView);
             Container.Bind<CurrentScoreView>().FromInstance(currentScoreView);
             Container.Bind<EndGamePanelView>().FromInstance(endGamePanelView);
+            Container.Bind<ScoreHistoryView>().FromInstance(scoreHistoryView);
+            Container.Bind<SavingSystemHelper>().FromInstance(savingSystemHelper);
             Container.Bind<FieldsStorage>().AsSingle();
             Container.BindInterfacesAndSelfTo<MainMenuController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ScoreHistoryUiController>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameRunner>().AsSingle();
             Container.Bind<GameState>().AsSingle();
             Container.Bind<GameScore>().AsSingle();
+            Container.Bind<ScoreHistory>().AsSingle();
             Container.BindInterfacesAndSelfTo<InputController>().AsSingle();
             HandlersBinding();
             PipelineTasksBinding();
+            SavingSystemBinding();
         }
 
         private void HandlersBinding()
@@ -66,6 +77,13 @@ namespace DI
             Container.Bind<StartVisualPipelineTask>().AsSingle();
             Container.Bind<RedrawCurrentScoreTask>().AsSingle();
             Container.Bind<GameOverTask>().AsSingle();
+        }
+
+        private void SavingSystemBinding()
+        {
+            Container.Bind<SavingSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<FileSystemSaverLoader>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ScoreSavingManager>().AsSingle();
         }
     }
 }
