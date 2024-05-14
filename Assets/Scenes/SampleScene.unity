@@ -1779,6 +1779,37 @@ MonoBehaviour:
   buttonDown: {fileID: 806375093}
   buttonLeft: {fileID: 2029276063}
   buttonRight: {fileID: 1819280878}
+--- !u!1 &516213218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 516213219}
+  m_Layer: 0
+  m_Name: '[GameElements]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &516213219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516213218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5750071228384709696}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &530919031
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,7 +6283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldPrefab: {fileID: 1661041104952628442, guid: eddf406efe03222dcb6c0fcfdf24ebcb,
     type: 3}
-  parentObject: {fileID: 5750071228384709696}
+  parentObject: {fileID: 516213219}
   backgroundPrefab: {fileID: 1056093836015813595, guid: 0ef4b6dbe89acb524b111bac8e045072,
     type: 3}
   activeCubePrefab: {fileID: 1661041104952628442, guid: 9c16e34e98550e5b09dccf051427b3c8,
@@ -6283,6 +6314,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1871268457}
+  - {fileID: 516213219}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6342,5 +6374,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e698b0e428979e31594156aa3b3e0976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionAsset: {fileID: -944628639613478452, guid: 7135af5e11a0f3347bfac68c1316015b,
-    type: 3}
