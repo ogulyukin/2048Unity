@@ -17,13 +17,13 @@ namespace Game
     {
         private readonly List<ScoreEntry> _score = new();
 
-        public List<ScoreEntry> GetScoreHistory()
+        public List<(string, string)> GetScoreHistory()
         {
-            if (_score.Count <= 10) return _score;
+            if (_score.Count <= 10) return GetStringScoreResults(_score);
             var resultList = new List<ScoreEntry>();
             for(var i = 0; i <= 10; i++)
                 resultList.Add(_score[i]);
-            return resultList;
+            return GetStringScoreResults(resultList);
         }
 
         public void AddResult(int score, string dateTime)
@@ -40,6 +40,17 @@ namespace Game
         public void AddResult(int score)
         {
             AddResult(score, DateTime.Now.ToString(CultureInfo.CurrentCulture));
+        }
+
+        private List<(string, string)> GetStringScoreResults(List<ScoreEntry> scores)
+        {
+            var result = new List<(string, string)>();
+            foreach (var score in scores)
+            {
+                result.Add((score.ScoreValue.ToString(), score.ScoreDateTime));
+            }
+
+            return result;
         }
     }
 }

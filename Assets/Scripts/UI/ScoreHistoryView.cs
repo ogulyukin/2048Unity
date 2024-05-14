@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Game;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -12,7 +11,7 @@ namespace UI
         [SerializeField] private Transform parentTransform;
         [SerializeField] private Button closeButton;
 
-        public void RedrawScoreHistory(List<ScoreEntry> scoreEntries)
+        public void RedrawScoreHistory(List<(string, string)> scoreEntries)
         {
             foreach (Transform child in parentTransform)
             {
@@ -22,7 +21,7 @@ namespace UI
             foreach (var scoreEntry in scoreEntries)
             {
                 var entry = Instantiate(scoreEntryPrefab, parentTransform);
-                entry.GetComponent<ScoreEntryView>().SetEntryText($"{scoreEntry.ScoreValue}", scoreEntry.ScoreDateTime);
+                entry.GetComponent<ScoreEntryView>().SetEntryText(scoreEntry.Item1, scoreEntry.Item2);
             }
         }
 

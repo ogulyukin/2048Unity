@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Game;
 using JetBrains.Annotations;
 using SaveSystem.Core;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SaveSystem.Data
@@ -28,7 +26,7 @@ namespace SaveSystem.Data
             var data = new Dictionary<string, string> {{"SavableType", "ScoreHistory"}};
             foreach (var entry in scoreHistory)
             {
-                data.Add(entry.ScoreDateTime, $"{entry.ScoreValue}");
+                data.Add(entry.Item2, entry.Item1);
             }
             scores.Add(data);
             return scores;
