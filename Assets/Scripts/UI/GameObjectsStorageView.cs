@@ -11,7 +11,7 @@ namespace UI
     public sealed class GameObjectsStorageView : MonoBehaviour
     {
         [FormerlySerializedAs("_fieldPrefab")] [SerializeField] private GameObject fieldPrefab;
-        [FormerlySerializedAs("_parentObject")] [SerializeField] private Transform parentObject;
+        [FormerlySerializedAs("parentObject")] [FormerlySerializedAs("_parentObject")] [SerializeField] private Transform parentTransform;
         [FormerlySerializedAs("_backgroundPrefab")] [SerializeField] private GameObject backgroundPrefab;
         [FormerlySerializedAs("_activeCubePrefab")] [SerializeField] private GameObject activeCubePrefab;
         [FormerlySerializedAs("_cubeColors")] [SerializeField] private List<Color> cubeColors;
@@ -29,14 +29,14 @@ namespace UI
             _fieldCoordinates = new Vector3[16];
             _activeCubes = new GameObject[16];
             var count = 0;
-            Instantiate(backgroundPrefab, Vector3.zero, backgroundPrefab.transform.rotation, parentObject);
+            Instantiate(backgroundPrefab, Vector3.zero, backgroundPrefab.transform.rotation, parentTransform);
             
             for (var i = 4.38f; i > -5f; i -= 2.92f)
             {
                 for (var j = -4.38f; j < 5f; j += 2.92f)
                 {
                     var position = new Vector3(j, i, -0.5f);
-                    Instantiate(fieldPrefab, position, fieldPrefab.transform.rotation , parentObject);
+                    Instantiate(fieldPrefab, position, fieldPrefab.transform.rotation , parentTransform);
                     position.z = -0.6f;
                     _fieldCoordinates[count] = position;
                     count++;
@@ -53,7 +53,7 @@ namespace UI
         public void Clear()
         {
             _colorsDictionary.Clear();
-            foreach (Transform child in transform)
+            foreach (Transform child in parentTransform)
             {
                 Destroy(child.gameObject);
             }
@@ -61,7 +61,7 @@ namespace UI
 
         public void InstantiateNewActiveCube(int position, int value)
         {
-            var newActiveCube = Instantiate(activeCubePrefab, _fieldCoordinates[position], activeCubePrefab.transform.rotation, parentObject);
+            var newActiveCube = Instantiate(activeCubePrefab, _fieldCoordinates[position], activeCubePrefab.transform.rotation, parentTransform);
             _activeCubes[position] = newActiveCube;
             var view = newActiveCube.GetComponent<ActiveCubeView>();
             view.SetCubeText($"{value}");
