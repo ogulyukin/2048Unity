@@ -46,11 +46,11 @@ namespace Game.Pipeline.TurnPipeline.Tasks
 
         private void PlayerKeyPressedListener(UserCommands userCommand)
         {
+            _inputController.OnUserCommand -= PlayerKeyPressedListener;
             if(userCommand == UserCommands.Left)_eventBus.RaiseEvent(new MoveLeftEvent());
             if(userCommand == UserCommands.Right)_eventBus.RaiseEvent(new MoveRightEvent());
             if(userCommand == UserCommands.Up)_eventBus.RaiseEvent(new MoveUpEvent());
             if(userCommand == UserCommands.Down)_eventBus.RaiseEvent(new MoveDownEvent());
-            _inputController.OnUserCommand -= PlayerKeyPressedListener;
             Finish();
         }
     }

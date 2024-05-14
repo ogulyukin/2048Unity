@@ -6283,7 +6283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldPrefab: {fileID: 1661041104952628442, guid: eddf406efe03222dcb6c0fcfdf24ebcb,
     type: 3}
-  parentObject: {fileID: 516213219}
+  parentTransform: {fileID: 516213219}
   backgroundPrefab: {fileID: 1056093836015813595, guid: 0ef4b6dbe89acb524b111bac8e045072,
     type: 3}
   activeCubePrefab: {fileID: 1661041104952628442, guid: 9c16e34e98550e5b09dccf051427b3c8,
@@ -6330,7 +6330,6 @@ GameObject:
   - component: {fileID: 4962194595684774593}
   - component: {fileID: 7136311618806585368}
   - component: {fileID: 7136311618806585369}
-  - component: {fileID: 7136311618806585370}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -6360,17 +6359,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12aa9c2b32eea01c98a44313a06fbaf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7136311618806585370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931166921395345226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e698b0e428979e31594156aa3b3e0976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

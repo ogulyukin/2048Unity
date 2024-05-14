@@ -1,6 +1,8 @@
 using System;
 using JetBrains.Annotations;
 using UI;
+using UnityEngine;
+using Zenject;
 
 namespace Game.Control
 {
@@ -9,11 +11,14 @@ namespace Game.Control
         Left, Right, Up, Down
     }
     [UsedImplicitly]
-    public sealed class InputController : IDisposable
+    public sealed class InputController : ITickable, IDisposable
     {
         private readonly GameState _gameState;
         private readonly ButtonControllerView _buttonControllerView;
         public Action<UserCommands> OnUserCommand;
+        
+        private const float CommandTimeout  = 0.5f;
+        private float _currentTimeout;
 
         public InputController(GameState gameState, ButtonControllerView buttonControllerView)
         {
@@ -24,26 +29,49 @@ namespace Game.Control
             _buttonControllerView.ButtonRight.AddListener(OnRightButtonPressed);
             _buttonControllerView.ButtonLeft.AddListener(OnLeftButtonPressed);
         }
-
+        
+        public void Tick()
+        {
+            if (_currentTimeout > 0)
+            {
+                _currentTimeout -= Time.deltaTime;
+            }
+        }
 
         private void OnUPButtonPressed()
         {
-            if (_gameState.CurrentState == States.Started) OnUserCommand?.Invoke(UserCommands.Up);
+            if (_gameState.CurrentState == States.Started && _currentTimeout <= 0)
+            {
+                OnUserCommand?.Invoke(UserCommands.Up);
+                _currentTimeout = CommandTimeout;
+            }
         }
 
         private void OnDownButtonPressed()
         {
-            if (_gameState.CurrentState == States.Started) OnUserCommand?.Invoke(UserCommands.Down);
+            if (_gameState.CurrentState == States.Started && _currentTimeout <= 0)
+            {
+                OnUserCommand?.Invoke(UserCommands.Down);
+                _currentTimeout = CommandTimeout;
+            }
         }
 
         private void OnRightButtonPressed()
         {
-            if (_gameState.CurrentState == States.Started) OnUserCommand?.Invoke(UserCommands.Right);
+            if (_gameState.CurrentState == States.Started && _currentTimeout <= 0)
+            {
+                OnUserCommand?.Invoke(UserCommands.Right);
+                _currentTimeout = CommandTimeout;
+            }
         }
 
         private void OnLeftButtonPressed()
         {
-            if (_gameState.CurrentState == States.Started) OnUserCommand?.Invoke(UserCommands.Left);
+            if (_gameState.CurrentState == States.Started && _currentTimeout <= 0)
+            {
+                OnUserCommand?.Invoke(UserCommands.Left);
+                _currentTimeout = CommandTimeout;
+            }
         }
         public void Dispose()
         {
