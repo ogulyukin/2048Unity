@@ -8,20 +8,20 @@ using UI;
 namespace Game.Handlers.VisualHandlers
 {
     [UsedImplicitly]
-    public sealed class RiseValueHandler : BaseHandler<RiseValueEvent>
+    public sealed class RaiseValueHandler : BaseHandler<RaiseValueEvent>
     {
         private readonly GameObjectsStorageView _gameObjectsStorageView;
         private readonly VisualPipeline _visualPipeline;
         
-        public RiseValueHandler(EventBus eventBus, GameObjectsStorageView gameObjectsStorageView, VisualPipeline visualPipeline) : base(eventBus)
+        public RaiseValueHandler(EventBus eventBus, GameObjectsStorageView gameObjectsStorageView, VisualPipeline visualPipeline) : base(eventBus)
         {
             _gameObjectsStorageView = gameObjectsStorageView;
             _visualPipeline = visualPipeline;
         }
 
-        protected override void HandleEvent(RiseValueEvent evt)
+        protected override void HandleEvent(RaiseValueEvent evt)
         {
-            _visualPipeline.AddTask(new RiseCubeValueVisualTask(_gameObjectsStorageView, evt.Position, evt.Value, evt.ActionTimeout));
+            _visualPipeline.AddTask(new RaiseCubeValueVisualTask(_gameObjectsStorageView, evt.Position, evt.Value, evt.ActionTimeout));
         }
     }
 }

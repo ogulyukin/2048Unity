@@ -1,4 +1,5 @@
 
+using Audio;
 using UI;
 
 namespace Game.Pipeline.TurnVisualPipeline.Tasks
@@ -7,17 +8,20 @@ namespace Game.Pipeline.TurnVisualPipeline.Tasks
     {
         private readonly EndGamePanelView _endGamePanelView;
         private readonly GameScore _gameScore;
+        private readonly GameAudio _gameAudio;
 
-        public GameOverVisualTask(EndGamePanelView endGamePanelView, GameScore gameScore)
+        public GameOverVisualTask(EndGamePanelView endGamePanelView, GameScore gameScore, GameAudio gameAudio)
         {
             _endGamePanelView = endGamePanelView;
             _gameScore = gameScore;
+            _gameAudio = gameAudio;
         }
 
         protected override void OnRun()
         {
             _endGamePanelView.SetActiveness(true);
            _endGamePanelView.SetFinalScore($" {_gameScore.CurrentScore}"); 
+           _gameAudio.PlayGameOverSound();
            _endGamePanelView.AddListener(Finish);
         }
 

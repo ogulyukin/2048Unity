@@ -1,3 +1,4 @@
+using Audio;
 using Game;
 using Game.Control;
 using Game.Handlers.TurnHandlers;
@@ -26,7 +27,8 @@ namespace DI
         [SerializeField] private CurrentScoreView currentScoreView;
         [SerializeField] private EndGamePanelView endGamePanelView;
         [SerializeField] private ScoreHistoryView scoreHistoryView;
-        [SerializeField] private SavingSystemHelper savingSystemHelper;
+        [FormerlySerializedAs("savingSystemHelper")] [SerializeField] private SavingSystemController savingSystemController;
+        [SerializeField] private GameAudio gameAudio;
         public override void InstallBindings()
         {
             Container.Bind<EventBus>().AsSingle();
@@ -35,7 +37,8 @@ namespace DI
             Container.Bind<CurrentScoreView>().FromInstance(currentScoreView);
             Container.Bind<EndGamePanelView>().FromInstance(endGamePanelView);
             Container.Bind<ScoreHistoryView>().FromInstance(scoreHistoryView);
-            Container.Bind<SavingSystemHelper>().FromInstance(savingSystemHelper);
+            Container.Bind<GameAudio>().FromInstance(gameAudio);
+            Container.Bind<SavingSystemController>().FromInstance(savingSystemController);
             Container.Bind<ActiveCubesStorage>().AsSingle();
             Container.BindInterfacesAndSelfTo<MainMenuController>().AsSingle();
             Container.BindInterfacesAndSelfTo<ScoreHistoryUiController>().AsSingle();
@@ -60,10 +63,12 @@ namespace DI
             Container.BindInterfacesAndSelfTo<MoveUpHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<MoveDownHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<DestroyVisualHandler>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RiseValueHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RaiseValueHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<MoveCubeVisualHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<RedrawCurrentScoreHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<StartGameVisualHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RaiseValueAudioHandler>().AsSingle();
         }
 
         private void PipelineTasksBinding()

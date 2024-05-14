@@ -1,11 +1,10 @@
-using System;
 using SaveSystem.Core;
 using UnityEngine;
 using Zenject;
 
 namespace SaveSystem.Tools
 {
-    public sealed class SavingSystemHelper : MonoBehaviour
+    public sealed class SavingSystemController : MonoBehaviour
     {
         private SavingSystem _saveSystem;
 

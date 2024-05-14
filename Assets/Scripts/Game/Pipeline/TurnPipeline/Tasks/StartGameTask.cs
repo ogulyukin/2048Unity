@@ -22,8 +22,9 @@ namespace Game.Pipeline.TurnPipeline.Tasks
         {
             if (_gameState.CurrentState == States.Stopped)
             {
-                _eventBus.RaiseEvent(new SetupGameFieldEvent());
                 _gameState.CurrentState = States.JustStarted;
+                _eventBus.RaiseEvent(new StartGameEvent());
+                _eventBus.RaiseEvent(new SetupGameEvent());
                 _eventBus.RaiseEvent(new CreateNewActiveCubeEvent());
                 _gameScore.CurrentScore = -1;
                 Debug.Log("Game Started");

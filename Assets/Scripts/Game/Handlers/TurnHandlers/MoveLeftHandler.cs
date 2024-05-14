@@ -43,7 +43,7 @@ namespace Game.Handlers.TurnHandlers
         {
             _activeCubesStorage.ClearEntity(source);
             EventBus.RaiseEvent(new DestroyEvent(source, timeout));
-            EventBus.RaiseEvent(new RiseValueEvent(target, _activeCubesStorage.RiseEntityValue(target), timeout));
+            EventBus.RaiseEvent(new RaiseValueEvent(target, _activeCubesStorage.RiseEntityValue(target), timeout));
         }
 
         private (int, int) MoveActiveCubeLeft(int position, int steps)

@@ -5,7 +5,7 @@ using UI;
 namespace Game.Handlers.TurnHandlers
 {
     [UsedImplicitly]
-    public sealed class SetupGameFieldHandler : BaseHandler<SetupGameFieldEvent>
+    public sealed class SetupGameFieldHandler : BaseHandler<SetupGameEvent>
     {
         private readonly GameObjectsStorageView _gameObjectsStorageView;
 
@@ -14,7 +14,7 @@ namespace Game.Handlers.TurnHandlers
             _gameObjectsStorageView = gameObjectsStorageView;
         }
 
-        protected override void HandleEvent(SetupGameFieldEvent evt)
+        protected override void HandleEvent(SetupGameEvent evt)
         {
             _gameObjectsStorageView.Setup();
         }

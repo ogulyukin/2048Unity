@@ -16,7 +16,9 @@ namespace UI
         [FormerlySerializedAs("_activeCubePrefab")] [SerializeField] private GameObject activeCubePrefab;
         [FormerlySerializedAs("_cubeColors")] [SerializeField] private List<Color> cubeColors;
 
-        private const float ActionCoefficient = 0.15f;
+        [SerializeField] private float actionCoefficient = 0.15f;
+
+        public float ActionCoefficient => actionCoefficient;
 
         private Vector3[] _fieldCoordinates;
         private GameObject[] _activeCubes;
@@ -64,7 +66,7 @@ namespace UI
             var view = newActiveCube.GetComponent<ActiveCubeView>();
             view.SetCubeText($"{value}");
             view.SetPanelColor(_colorsDictionary[value]);
-            view.ChangeValueAnimation(ActionCoefficient);
+            view.ChangeValueAnimation(actionCoefficient);
         }
 
         public void MoveActiveCube(int position, int target, float duration)
@@ -77,12 +79,12 @@ namespace UI
             var movedCube = _activeCubes[position];
             _activeCubes[target] = movedCube;
             _activeCubes[position] = null;
-            _activeCubes[target].GetComponent<ActiveCubeView>().Move(_fieldCoordinates[target], duration * ActionCoefficient);
+            _activeCubes[target].GetComponent<ActiveCubeView>().Move(_fieldCoordinates[target], duration * actionCoefficient);
         }
 
         public void DestroyActiveCube(int position, float timeout)
         {
-            StartCoroutine(DestroyCoroutine(position, timeout * ActionCoefficient));
+            StartCoroutine(DestroyCoroutine(position, timeout * actionCoefficient));
         }
 
         private IEnumerator DestroyCoroutine(int position, float timeout)
@@ -90,23 +92,23 @@ namespace UI
             var cubeToDestroy = _activeCubes[position];
             _activeCubes[position] = null;
             yield return new WaitForSeconds(timeout);
-            cubeToDestroy.GetComponent<ActiveCubeView>().DestroyAnimation(ActionCoefficient);
-            Destroy(cubeToDestroy, ActionCoefficient);
+            cubeToDestroy.GetComponent<ActiveCubeView>().DestroyAnimation(actionCoefficient);
+            Destroy(cubeToDestroy, actionCoefficient);
         }
 
-        public void RiseActiveCubeValue(int position, int value, float timeout)
+        public void RaiseActiveCubeValue(int position, int value, float timeout)
         {
-            StartCoroutine(RiseValueCoroutine(position, value, timeout * ActionCoefficient));
+            StartCoroutine(RaiseValueCoroutine(position, value, timeout * actionCoefficient));
         }
 
-        private IEnumerator RiseValueCoroutine(int position, int value, float timeout)
+        private IEnumerator RaiseValueCoroutine(int position, int value, float timeout)
         {
             yield return new WaitForSeconds(timeout);
             var view = _activeCubes[position]?.GetComponent<ActiveCubeView>();
             if (view == null) yield break;
             view.SetCubeText($"{value}");
             view.SetPanelColor(_colorsDictionary[value]);
-            view.ChangeValueAnimation(ActionCoefficient);
+            view.ChangeValueAnimation(actionCoefficient);
         }
     }
 }
