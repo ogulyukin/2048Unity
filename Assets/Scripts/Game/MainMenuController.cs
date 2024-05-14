@@ -1,6 +1,7 @@
 using System;
 using JetBrains.Annotations;
 using UI;
+using UnityEngine;
 using UnityEditor;
 
 namespace Game
@@ -13,12 +14,14 @@ namespace Game
         public Action OnGameFinished;
         private readonly GameState _gameState;
         private readonly CurrentScoreView _currentScoreView;
+        private readonly ButtonControllerView _buttonControllerView;
 
-        public MainMenuController(MainMenuView mainMenuView, GameState gameState, CurrentScoreView currentScoreView)
+        public MainMenuController(MainMenuView mainMenuView, GameState gameState, CurrentScoreView currentScoreView, ButtonControllerView buttonControllerView)
         {
             _mainMenuView = mainMenuView;
             _gameState = gameState;
             _currentScoreView = currentScoreView;
+            _buttonControllerView = buttonControllerView;
             _mainMenuView.StartGameButton.AddListener(BeginGame);
             _mainMenuView.ExitGameButton.AddListener(ExitGame);
             _mainMenuView.ExitGameButton2.AddListener(EndGame);
@@ -28,6 +31,7 @@ namespace Game
         {
             _mainMenuView.SetMainMenuActiveness(false);
             _currentScoreView.SetActive(true);
+            _buttonControllerView.SetActiveness(true);
             OnGameStart?.Invoke();
         }
         
@@ -46,6 +50,7 @@ namespace Game
             _gameState.CurrentState = States.Stopped;
             _mainMenuView.SetMainMenuActiveness(true);
             _currentScoreView.SetActive(false);
+            _buttonControllerView.SetActiveness(false);
         }
 
         public void Dispose()

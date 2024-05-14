@@ -23,7 +23,7 @@ namespace UI
         private Vector3[] _fieldCoordinates;
         private GameObject[] _activeCubes;
         private readonly Dictionary<int, Color> _colorsDictionary = new();
-
+        
         public void Setup()
         {
             _fieldCoordinates = new Vector3[16];

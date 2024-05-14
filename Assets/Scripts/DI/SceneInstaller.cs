@@ -27,6 +27,7 @@ namespace DI
         [SerializeField] private CurrentScoreView currentScoreView;
         [SerializeField] private EndGamePanelView endGamePanelView;
         [SerializeField] private ScoreHistoryView scoreHistoryView;
+        [SerializeField] private ButtonControllerView buttonControllerView;
         [FormerlySerializedAs("savingSystemHelper")] [SerializeField] private SavingSystemController savingSystemController;
         [SerializeField] private GameAudio gameAudio;
         public override void InstallBindings()
@@ -37,6 +38,7 @@ namespace DI
             Container.Bind<CurrentScoreView>().FromInstance(currentScoreView);
             Container.Bind<EndGamePanelView>().FromInstance(endGamePanelView);
             Container.Bind<ScoreHistoryView>().FromInstance(scoreHistoryView);
+            Container.Bind<ButtonControllerView>().FromInstance(buttonControllerView);
             Container.Bind<GameAudio>().FromInstance(gameAudio);
             Container.Bind<SavingSystemController>().FromInstance(savingSystemController);
             Container.Bind<ActiveCubesStorage>().AsSingle();
