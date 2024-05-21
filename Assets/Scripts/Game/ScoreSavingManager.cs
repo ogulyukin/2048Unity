@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Game;
 using JetBrains.Annotations;
 using SaveSystem.Core;
 using UnityEngine;
 
-namespace SaveSystem.Data
+namespace Game
 {
     [UsedImplicitly]
     public sealed class ScoreSavingManager : ISaveAble

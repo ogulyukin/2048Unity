@@ -8,10 +8,10 @@ using Game.Pipeline.TurnPipeline;
 using Game.Pipeline.TurnPipeline.Tasks;
 using Game.Pipeline.TurnVisualPipeline;
 using JetBrains.Annotations;
+using SaveSystem.Control;
 using SaveSystem.Core;
-using SaveSystem.Data;
 using SaveSystem.FileSaverSystem;
-using SaveSystem.Tools;
+using SaveSystem.PlayerPrefsSaverSystem;
 using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -49,6 +49,7 @@ namespace DI
             Container.Bind<GameScore>().AsSingle();
             Container.Bind<ScoreHistory>().AsSingle();
             Container.BindInterfacesAndSelfTo<InputController>().AsSingle();
+            Container.BindInterfacesTo<ScreenControl>().AsSingle();
             HandlersBinding();
             PipelineTasksBinding();
             SavingSystemBinding();
@@ -68,7 +69,7 @@ namespace DI
             Container.BindInterfacesAndSelfTo<RaiseValueHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<MoveCubeVisualHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<RedrawCurrentScoreHandler>().AsSingle();
-            Container.BindInterfacesAndSelfTo<GameOverHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameOverVisualHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<StartGameVisualHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<RaiseValueAudioHandler>().AsSingle();
         }
@@ -90,7 +91,7 @@ namespace DI
         private void SavingSystemBinding()
         {
             Container.Bind<SavingSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<FileSystemSaverLoader>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerPrefsSaveLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<ScoreSavingManager>().AsSingle();
         }
     }

@@ -21,7 +21,7 @@ namespace Game.Handlers.TurnHandlers
             var fieldIndex = _activeCubesStorage.AddNewRandomValue();
             if (fieldIndex < 0)
             {
-                EventBus.RaiseEvent(new GameOverEvent());
+                EventBus.RaiseEvent(new GameOverEvent(false));
             }
             else
             {

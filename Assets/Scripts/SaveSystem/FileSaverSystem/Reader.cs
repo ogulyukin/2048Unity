@@ -6,7 +6,7 @@ namespace SaveSystem.FileSaverSystem
 {
     public sealed class Reader
     {
-        public bool IsSaveFileExist(string filename)
+        private bool IsSaveFileExist(string filename)
         {
             return File.Exists(filename);
         }

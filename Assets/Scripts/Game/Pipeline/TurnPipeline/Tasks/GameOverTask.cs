@@ -19,7 +19,7 @@ namespace Game.Pipeline.TurnPipeline.Tasks
         {
             if (_activeCubesStorage.GetMaxFieldValue() == 2048)
             {
-                _eventBus.RaiseEvent(new GameOverEvent());
+                _eventBus.RaiseEvent(new GameOverEvent(true));
             }
             Finish();
         }

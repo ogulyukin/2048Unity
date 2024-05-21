@@ -2,7 +2,7 @@ using SaveSystem.Core;
 using UnityEngine;
 using Zenject;
 
-namespace SaveSystem.Tools
+namespace SaveSystem.Control
 {
     public sealed class SavingSystemController : MonoBehaviour
     {

@@ -9,6 +9,8 @@ namespace UI
     {
         [SerializeField] private Button closeButton;
         [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private TextMeshProUGUI gameOverText;
+        [SerializeField] private TextMeshProUGUI youWinText;
 
         private string _originalScore;
 
@@ -20,6 +22,16 @@ namespace UI
         public void SetActiveness(bool activeness)
         {
             gameObject.SetActive(activeness);
+        }
+
+        public void SetGameOverText(bool activeness)
+        {
+            gameOverText.gameObject.SetActive(activeness);
+        }
+
+        public void SetYouWinText(bool activeness)
+        {
+            youWinText.gameObject.SetActive(activeness);
         }
 
         public void SetFinalScore(string score)

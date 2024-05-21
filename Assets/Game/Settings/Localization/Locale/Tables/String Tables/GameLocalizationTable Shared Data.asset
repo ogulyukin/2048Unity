@@ -43,6 +43,14 @@ MonoBehaviour:
     m_Key: FinalSccore
     m_Metadata:
       m_Items: []
+  - m_Id: 1710909911486464
+    m_Key: ScoreHistory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3513346141999104
+    m_Key: YouWin
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

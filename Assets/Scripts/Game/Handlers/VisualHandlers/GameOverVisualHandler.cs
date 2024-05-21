@@ -1,14 +1,15 @@
 using Audio;
 using Game.Events;
+using Game.Handlers.TurnHandlers;
 using Game.Pipeline.TurnVisualPipeline;
 using Game.Pipeline.TurnVisualPipeline.Tasks;
 using JetBrains.Annotations;
 using UI;
 
-namespace Game.Handlers.TurnHandlers
+namespace Game.Handlers.VisualHandlers
 {
     [UsedImplicitly]
-    public sealed class GameOverHandler : BaseHandler<GameOverEvent>
+    public sealed class GameOverVisualHandler : BaseHandler<GameOverEvent>
     {
         private readonly VisualPipeline _visualPipeline;
         private readonly EndGamePanelView _endGamePanelView;
@@ -17,7 +18,7 @@ namespace Game.Handlers.TurnHandlers
         private readonly ScoreHistory _scoreHistory;
         private readonly GameAudio _gameAudio;
         
-        public GameOverHandler(EventBus eventBus, VisualPipeline visualPipeline, EndGamePanelView endGamePanelView, GameScore gameScore, GameState gameState, 
+        public GameOverVisualHandler(EventBus eventBus, VisualPipeline visualPipeline, EndGamePanelView endGamePanelView, GameScore gameScore, GameState gameState, 
         ScoreHistory scoreHistory, GameAudio gameAudio) : base(eventBus)
         {
             _visualPipeline = visualPipeline;
@@ -30,7 +31,7 @@ namespace Game.Handlers.TurnHandlers
 
         protected override void HandleEvent(GameOverEvent evt)
         {
-            _visualPipeline.AddTask(new GameOverVisualTask(_endGamePanelView, _gameScore, _gameAudio));
+            _visualPipeline.AddTask(new GameOverVisualTask(_endGamePanelView, _gameScore, _gameAudio, evt.IsWin));
             _gameState.CurrentState = States.GameOver;
             _scoreHistory.AddResult(_gameScore.CurrentScore);
         }

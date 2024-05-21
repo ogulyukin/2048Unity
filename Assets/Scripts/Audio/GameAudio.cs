@@ -8,6 +8,7 @@ namespace Audio
         [SerializeField] private AudioSource raiseSound;
         [SerializeField] private AudioSource startSound;
         [SerializeField] private AudioSource gameOverSound;
+        [SerializeField] private AudioSource winSound;
 
         public void PlayRaiseValueSound(float timeout)
         {
@@ -23,13 +24,17 @@ namespace Audio
 
         public void PlayStartGameSound()
         {
-            Debug.Log("!!!Play start");
             startSound.Play();
         }
 
         public void PlayGameOverSound()
         {
             gameOverSound.Play();
+        }
+
+        public void PlayWinSound()
+        {
+            winSound.Play();
         }
     }
 }
