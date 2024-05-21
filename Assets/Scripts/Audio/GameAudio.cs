@@ -1,14 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Audio
 {
     public class GameAudio : MonoBehaviour
     {
-        [SerializeField] private AudioSource raiseSound;
+        [FormerlySerializedAs("raiseSound")] [SerializeField] private AudioSource raiseValueSound;
         [SerializeField] private AudioSource startSound;
         [SerializeField] private AudioSource gameOverSound;
         [SerializeField] private AudioSource winSound;
+        [SerializeField] private AudioSource raiseScoreSound;
 
         public void PlayRaiseValueSound(float timeout)
         {
@@ -18,7 +20,7 @@ namespace Audio
         private IEnumerator RiseSoundCoroutine(float timeout)
         {
             yield return new WaitForSeconds(timeout);
-            raiseSound.Play();
+            raiseValueSound.Play();
 
         }
 
@@ -35,6 +37,11 @@ namespace Audio
         public void PlayWinSound()
         {
             winSound.Play();
+        }
+
+        public void PlayRaiseScoreSound()
+        {
+            raiseScoreSound.Play();
         }
     }
 }

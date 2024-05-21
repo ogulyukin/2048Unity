@@ -68,7 +68,7 @@ namespace DI
             Container.BindInterfacesAndSelfTo<DestroyVisualHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<RaiseValueHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<MoveCubeVisualHandler>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RedrawCurrentScoreHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RedrawCurrentScoreVisualHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverVisualHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<StartGameVisualHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<RaiseValueAudioHandler>().AsSingle();
